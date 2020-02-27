@@ -1,0 +1,51 @@
+{
+  "revision_id": "89669f80c3fc56ee2f2f66379267e838a56133674d9a0f3472f69d3686a54d3d",
+  "name": "overloadcpu",
+  "run_list": [
+    "recipe[overloadcpu::default]"
+  ],
+  "included_policy_locks": [
+
+  ],
+  "cookbook_locks": {
+    "overloadcpu": {
+      "version": "0.1.0",
+      "identifier": "6fec428f57966f91f91ad4852a0b94181adaacf7",
+      "dotted_decimal_identifier": "31503493031761519.41087765253007883.162831250664695",
+      "source": ".",
+      "cache_key": null,
+      "scm_info": {
+        "scm": "git",
+        "remote": null,
+        "revision": "155c6ffdb2e030841b2ab4fd367e50210d2ff1b6",
+        "working_tree_clean": false,
+        "published": false,
+        "synchronized_remote_branches": [
+
+        ]
+      },
+      "source_options": {
+        "path": "."
+      }
+    }
+  },
+  "default_attributes": {
+
+  },
+  "override_attributes": {
+
+  },
+  "solution_dependencies": {
+    "Policyfile": [
+      [
+        "overloadcpu",
+        ">= 0.0.0"
+      ]
+    ],
+    "dependencies": {
+      "overloadcpu (0.1.0)": [
+
+      ]
+    }
+  }
+}

@@ -1,0 +1,9 @@
+DEPENDENCIES
+  webserver
+    path: .
+    metadata: true
+
+GRAPH
+  apache2 (8.0.2)
+  webserver (1.0.8)
+    apache2 (~> 8.0.2)

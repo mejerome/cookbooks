@@ -1,0 +1,3 @@
+I, [2020-02-15T10:06:11.187942 #13356]  INFO -- Kitchen: -----> Starting Test Kitchen (v2.3.4)
+I, [2020-02-15T10:06:14.690905 #13356]  INFO -- Kitchen: -----> Destroying <default-centos-7>...
+I, [2020-02-15T10:06:25.904968 #13356]  INFO -- Kitchen: -----> Test Kitchen is finished. (0m14.72s)

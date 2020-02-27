@@ -1,0 +1,11 @@
+DEPENDENCIES
+  workstation
+    path: .
+    metadata: true
+
+GRAPH
+  chef-sugar (5.1.8)
+  firewall (2.7.0)
+    chef-sugar (>= 0.0.0)
+  workstation (1.0.0)
+    firewall (~> 2.7.0)

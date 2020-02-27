@@ -1,0 +1,24 @@
+DEPENDENCIES
+  loadbalancer
+    path: .
+    metadata: true
+
+GRAPH
+  build-essential (8.2.1)
+    mingw (>= 1.1)
+    seven_zip (>= 0.0.0)
+  chef-sugar (5.1.8)
+  firewall (2.7.0)
+    chef-sugar (>= 0.0.0)
+  haproxy (8.3.0)
+    build-essential (>= 8.0.1)
+    yum-epel (>= 0.0.0)
+  loadbalancer (1.1.2)
+    firewall (~> 2.7.0)
+    haproxy (~> 8.3.0)
+  mingw (2.1.0)
+    seven_zip (>= 0.0.0)
+  seven_zip (3.1.2)
+    windows (>= 0.0.0)
+  windows (6.0.1)
+  yum-epel (3.3.0)
