@@ -3,7 +3,7 @@ maintainer 'Jerome Tabiri'
 maintainer_email 'jtabiri@gmail.com'
 license 'All Rights Reserved'
 description 'Installs/Configures webserver'
-version '1.0.8'
+version '2.0.0'
 chef_version '>= 14.0'
 depends 'apache2', '~> 8.0.2'
 
