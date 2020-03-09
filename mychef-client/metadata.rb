@@ -3,7 +3,7 @@ maintainer 'Jerome Tabiri'
 maintainer_email 'jtabiri@gmail.com'
 license 'All Rights Reserved'
 description 'Installs/Configures mychef-client'
-version '0.1.1'
+version '0.1.2'
 chef_version '>= 14.0'
 depends 'chef-client', '~> 11.5.0'
 
