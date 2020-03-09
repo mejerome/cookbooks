@@ -22,15 +22,10 @@ directory app_dir do
   recursive true
 end
 
-template "#{app_dir}/index.html" do
-  extend Apache2::Cookbook::Helpers
-  source 'index.html.erb'
-  owner lazy { default_apache_user }
-  group lazy { default_apache_group }
-  variables(
-    hostname: node['hostname']
-  )
-  action :create
+git "#{app_dir}" do
+  repository 'https://github.com/mejerome/syslog-website.git'
+  revision 'master'
+  action :sync
 end
 
 template 'basic_site' do
