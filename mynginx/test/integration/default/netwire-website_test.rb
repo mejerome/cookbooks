@@ -15,8 +15,7 @@ describe port(80), :skip do
   it { should_not be_listening }
 end
 
-
-describe directory('/opt/html/netwire-website') do
+describe directory('/var/www/html/netwire-website') do
   it { should exist }
 end
 

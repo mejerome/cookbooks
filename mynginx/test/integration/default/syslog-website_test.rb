@@ -15,8 +15,7 @@ describe port(80), :skip do
   it { should_not be_listening }
 end
 
-
-describe directory('/opt/html/syslog-website') do
+describe directory('/var/www/html/syslog-website') do
   it { should exist }
 end
 
@@ -24,5 +23,3 @@ describe file('/etc/nginx/sites-enabled/sysloggh.com.conf') do
   it { should exist }
   its('content') { should match 'sysloggh.com' }
 end
-
-  

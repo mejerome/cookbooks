@@ -15,7 +15,6 @@ end
 # start and enable nginx service
 service 'nginx' do
   action [:start, :enable]
-  notifies :run, 'bash[cleanup]', :before
 end
 
 # ensure web folder exists
@@ -29,10 +28,11 @@ end
 # a bit of house cleaning before configurations
 bash 'cleanup' do
   code <<-EOH
-  #! bin/bash
-  sudo rm /etc/nginx/sites-available/*.conf && sudo rm /etc/nginx/sites-enabled/*.conf
+  sudo rm /etc/nginx/sites-available/*.conf
+  sudo rm /etc/nginx/sites-enabled/*.conf
   EOH
-  action :nothing
+  action :run
+  only_if { ::File.exist?('/etc/sites-available/*.conf') }
 end
 
 include_recipe 'mynginx::syslog-website'
