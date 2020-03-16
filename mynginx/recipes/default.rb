@@ -3,17 +3,22 @@
 # Recipe:: default
 #
 # Copyright:: 2020, The Authors, All Rights Reserved.
-# run update 
+
+# run update on distro
 apt_update 'update'
 
+# install nginx package
 package 'nginx' do
   action :install
 end
 
+# start and enable nginx service
 service 'nginx' do
   action [:start, :enable]
+  notifies :run, 'bash[cleanup]', :before
 end
 
+# ensure web folder exists
 directory '/var/www/html' do
   owner 'www-data'
   group 'www-data'
@@ -21,72 +26,14 @@ directory '/var/www/html' do
   action :create
 end
 
-app_dir = '/var/www/html'
-
-nginx_dir = '/etc/nginx/sites-available'
-
-# Syslog Website & config file
-git "#{app_dir}/syslog-website" do
-  repository 'https://github.com/mejerome/syslog-website.git'
-  revision 'master'
-  action :sync
-end
-
-file '/etc/nginx/sites-enabled/sysloggh.com.log' do
-  action :delete
-end
-
-file '/etc/nginx/sites-available/sysloggh.com.log' do
-  action :delete
-end
-
-template "#{nginx_dir}/sysloggh.com.conf" do
-  source 'config.conf.erb'
-  variables(
-    port: '80',
-    default_root: "#{app_dir}/syslog-website"
-  )
-  notifies :run, 'execute[enable virtual host]', :immediately
-end
-
-execute 'enable virtual host' do
-  command "ln -s #{nginx_dir}/sysloggh.com.conf /etc/nginx/sites-enabled/"
-  action  :nothing
-  notifies :reload, 'service[nginx]', :delayed
-end
-
-
-# Netwire Website & config file
-git "#{app_dir}/netwire-website" do
-  repository 'https://github.com/mejerome/netwire.github.io.git'
-  revision 'master'
-  action :sync
-end
-
-file '/etc/nginx/sites-enabled/netwiregh.com.log' do
-  action :delete
-end
-
-file '/etc/nginx/sites-available/netwiregh.com.log' do
-  action :delete
-end
-
-template "#{nginx_dir}/netwiregh.com.conf" do
-  source 'config.conf.erb'
-  variables(
-    port: '80',
-    default_root: "#{app_dir}/netwire-website"
-  )
-  notifies :run, 'execute[enable virtual host]', :immediately
-end
-
-execute 'enable virtual host' do
-  command "ln -s #{nginx_dir}/netwiregh.com.conf /etc/nginx/sites-enabled/"
-  action  :nothing
-  notifies :reload, 'service[nginx]', :delayed
-end
-
-
-service 'nginx' do
+# a bit of house cleaning before configurations
+bash 'cleanup' do
+  code <<-EOH
+  #! bin/bash
+  sudo rm /etc/nginx/sites-available/*.conf && sudo rm /etc/nginx/sites-enabled/*.conf
+  EOH
   action :nothing
 end
+
+include_recipe 'mynginx::syslog-website'
+include_recipe 'mynginx::netwire-website'

@@ -1,4 +1,4 @@
-# InSpec test for recipe mynginx::default
+# InSpec test for recipe mynginx::netwire-website
 
 # The InSpec reference, with examples and extensive documentation, can be
 # found at https://www.inspec.io/docs/reference/resources/
@@ -11,15 +11,16 @@ unless os.windows?
 end
 
 # This is an example test, replace it with your own test.
-describe port(80) do
-  it { should be_listening }
+describe port(80), :skip do
+  it { should_not be_listening }
 end
 
-describe package('nginx') do
-  it { should be_installed }
+
+describe directory('/opt/html/netwire-website') do
+  it { should exist }
 end
 
-describe service('nginx') do
-  it { should be_enabled }
-  it { should be_running }
+describe file('/etc/nginx/sites-enabled/netwiregh.com.conf') do
+  it { should exist }
+  its('content') { should match 'netwiregh.com' }
 end
