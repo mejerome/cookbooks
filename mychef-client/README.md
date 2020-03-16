@@ -1,4 +1,3 @@
 # mychef-client
 
-TODO: Enter the cookbook description here.
-
+This cookbook sets chef-client to run automatically on nodes at an hour interval

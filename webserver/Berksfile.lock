@@ -5,5 +5,5 @@ DEPENDENCIES
 
 GRAPH
   apache2 (8.0.2)
-  webserver (1.0.8)
+  webserver (2.0.0)
     apache2 (~> 8.0.2)
